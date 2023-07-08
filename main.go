@@ -39,19 +39,20 @@ func main() {
 	}
 	db.AutoMigrate(&domain.ShortenedURL{})
 	redisClient := redis.NewClient(&redis.Options{
-		//Addr:     "localhost:6379",
-		Addr:     "rediss://red-cii6nh2ip7vpelqbg1r0:dBFzikkmZGXCHgKv86R7ImWytgCLdDz1@oregon-redis.render.com:6379",
-		Password: "", // no password set
+		//Addr:     "localhost:6379"
+		Addr:     "redis-18692.c257.us-east-1-3.ec2.cloud.redislabs.com:18692",
+		Password: "KAzXzf9Yzc2XsnpuPnLt1kJspNZRWpyo", // no password set
 		DB:       0,  // use default DB
 	})
 
 	redisRepository := repositories.NewRedisRepository(redisClient)
 
 	var config = &domain.Config{
-		BaseURL:         "http://localhost:8080",
+		BaseURL:         "https://url-shortener-b4xw.onrender.com",
 		QRCodeDirectory: "./images",
 		UrlImagePath:    "static",
 	}
+
 
 	qrCodeService = services.NewQRCodeService(config)
 
