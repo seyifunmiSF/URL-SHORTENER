@@ -168,11 +168,18 @@ paths:
                 qrCodeURL: https://url-shortener-b4xw.onrender.com/static/bUHMA.png
                 shortenedURL: https://url-shortener-b4xw.onrender.com/s/sKrcu
                 visitCount: 3
-  /s/sKrcu:
+  /s/{alias}:
     get:
       tags:
         - default
       summary: Get Page Redirect
+      parameters:
+        - name: alias
+          in: path
+          schema:
+            type: string
+          required: true
+          example: sKrcu
       responses:
         '200':
           description: OK
